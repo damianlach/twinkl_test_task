@@ -6,6 +6,12 @@
 parameters:
 
 services:
+    App\EventSubscriber\RegistrationValidationMiddleware:
+        arguments:
+            $ipValidator: '@App\Service\Validation\Middleware\IpBlacklistValidator'
+            $characterValidator: '@App\Service\Validation\Middleware\SpecialCharacterValidator'
+        tags:
+            - { name: kernel.event_subscriber }
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
